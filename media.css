@@ -1,0 +1,774 @@
+/* ==========================================================================
+   MEDIA QUERIES - RESPONSIVE ARCHITECTURE
+   ========================================================================== */
+
+/* --- 1. TABLETS & LAPTOPS (1200px) --- */
+@media (max-width: 1200px) {
+    .container {
+        width: min(1040px, calc(100% - 40px));
+    }
+
+    .nav-center {
+        gap: 20px;
+    }
+
+    .hero-left {
+        padding-left: 60px;
+    }
+
+    .hero-phone {
+        right: 40px;
+        width: min(480px, 78%);
+    }
+}
+
+/* --- 2. DESKTOP/TABLET TRANSITION (1024px) --- */
+@media (max-width: 1024px) {
+    .services {
+        background:
+            linear-gradient(to right, #1a1a1a 100%, transparent),
+            url('assets/right-bg.webp');
+        background-size: cover;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+    }
+
+    .services-header {
+        grid-column: span 2;
+        text-align: center;
+        padding-right: 0;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services-header .section-sub {
+        max-width: 600px;
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .cursor-dot {
+        display: none !important;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+}
+
+/* --- 3. MOBILE LANDSCAPE / SMALL TABLETS (980px) --- */
+@media (max-width: 980px) {
+    :root {
+        --navH: 76px;
+        --navOffset: var(--navH);
+    }
+
+    .nav-float {
+        height: 76px;
+        margin-top: 0;
+        border-radius: 0;
+        width: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1001;
+    }
+
+    .nav-center {
+        display: none;
+    }
+
+    .nav-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* Hide desktop-only nav elements */
+    .nav-right .nav-divider,
+    .nav-right .btn,
+    .nav-right .btn-dark,
+    .nav-right .btn-grad,
+    .nav-right .icon-btn[aria-label="Search"] {
+        display: none !important;
+    }
+
+    /* --- HAMBURGER & MOBILE MENU --- */
+    #hamburger {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        z-index: 2001;
+        position: relative;
+    }
+
+    .hamburger-lines {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+    }
+
+    .hamburger-lines span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #0f172a;
+        border-radius: 2px;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    }
+
+    #hamburger.is-open .hamburger-lines span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #hamburger.is-open .hamburger-lines span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    #hamburger.is-open .hamburger-lines span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #ffffff;
+        z-index: 2000;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: block !important;
+        overflow-y: auto;
+    }
+
+    #mobileMenu.is-open {
+        transform: translateX(0);
+    }
+
+    .mobile-menu-inner {
+        padding: 100px 24px 40px;
+    }
+
+    .mobile-search-container {
+        margin-bottom: 30px;
+    }
+
+    .mobile-search-input {
+        width: 100%;
+        height: 54px;
+        padding: 0 20px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #0f172a;
+        background: #f8fafc;
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        /* Reduced gap since we have padding */
+        padding-top: 10px;
+    }
+
+    .mobile-nav-link {
+        display: block;
+        /* Changed from flex to block to remove icon spacing logic */
+        padding: 24px 0;
+        /* Increased vertical space for a premium feel */
+        text-decoration: none;
+        color: #0f172a;
+        font-size: 17px;
+        /* Slightly refined size */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid #f1f5f9;
+        transition: all 0.3s ease;
+        width: 100%;
+        text-align: left;
+    }
+
+    /* Specific fix for the buttons mentioned */
+    .mobile-nav-link svg,
+    .mobile-nav-link img {
+        display: none !important;
+        /* Force hide any icons/viewboxes */
+    }
+
+    .mobile-nav-link:active {
+        color: #6366f1;
+        padding-left: 10px;
+        /* Visual feedback that the item was pressed */
+        background-color: rgba(99, 102, 241, 0.03);
+    }
+
+    /* Hero Section Stacking */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 0;
+    }
+
+    .hero-left {
+        max-width: 100%;
+        padding: 100px 40px 60px;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .hero-right {
+        width: 100%;
+        height: 520px;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .hero-right-bg {
+        top: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        border-radius: 12px;
+    }
+
+    .hero-phone {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-10deg);
+        width: min(420px, 80%);
+    }
+
+    .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 820px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+    }
+
+    .gallery .container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* 2. Style the header and ensure it stays at the top */
+    .gallery__header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        padding: 0 20px !important;
+        margin-bottom: 30px !important;
+        order: 1; /* First */
+    }
+
+    /* 3. The Slider follows the title */
+    .gallery__slider {
+        order: 2; /* Second */
+        width: 100% !important;
+    }
+
+    /* 4. The Navigation moves to the bottom */
+    .gallery__nav {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+        margin-top: 40px !important;
+        order: 3; /* Third (Bottom) */
+    }
+
+
+    .gallery .sec-title {
+        display: contents !important;
+    }
+}
+
+/* --- 4. STANDARD PHONES (768px) --- */
+@media (max-width: 768px) {
+    .search-panel {
+        width: 95%;
+        padding: 40px 20px;
+    }
+
+    .search-input {
+        font-size: 24px;
+    }
+
+    .search-close {
+        top: 10px;
+        right: 10px;
+        font-size: 32px;
+    }
+
+    .about-head {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .about-sub {
+        margin-inline: auto;
+        text-align: center;
+        max-width: 540px;
+    }
+
+    .gallery__slider {
+        padding: 0 20px;
+    }
+
+    .gallery__item {
+        padding: 20px;
+    }
+
+    .gallery__item .image {
+        height: 200px;
+    }
+}
+
+/* --- 5. MOBILE PORTRAIT (640px) --- */
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-header {
+        grid-column: span 1;
+        text-align: center;
+        padding-right: 0;
+    }
+}
+
+/* --- 6. SMALL PHONES (560px) --- */
+@media (max-width: 560px) {
+
+    #home.hero,
+    .hero {
+        min-height: auto !important;
+        height: auto !important;
+        padding-bottom: 40px;
+        display: block !important;
+    }
+
+    .hero-grid {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .hero-left {
+        padding: 100px 20px 40px !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+
+    /* CTA Form Polish */
+    .cta {
+        display: flex !important;
+        flex-direction: column !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .cta input {
+        width: 100% !important;
+        height: 56px !important;
+        border-radius: 30px !important;
+        border: 1px solid #e2e8f0 !important;
+        padding: 0 24px !important;
+        background: #fff !important;
+    }
+
+    .cta .btn.btn-grad {
+        width: 100% !important;
+        height: 56px !important;
+        border-radius: 30px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .badges {
+        gap: 12px !important;
+        justify-content: flex-start !important;
+    }
+
+    .hero-right {
+        height: 380px;
+        position: relative;
+    }
+
+    .about-grid,
+    .steps-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        padding: 0 20px !important;
+    }
+
+    .about-card,
+    .step {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+    }
+
+    .services {
+        background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('assets/right-bg.webp') !important;
+        padding: 60px 0 !important;
+    }
+
+    .services-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 24px !important;
+        padding: 0 20px !important;
+    }
+
+    .services-header {
+        margin-bottom: 30px !important;
+        width: 100%;
+    }
+
+    .services-header .section-title {
+        font-size: 36px !important;
+    }
+
+    .service-card {
+        width: 100% !important;
+        max-width: 320px !important;
+        padding: 30px 24px !important;
+    }
+
+    .sec-title.gallery__header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+        padding: 0 20px !important;
+        margin-bottom: 50px !important;
+    }
+
+    .gallery__nav.gallery-controls {
+        display: flex !important;
+        width: 100% !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        position: static !important;
+    }
+
+    .gallery__slider {
+        margin-top: 10px !important;
+        padding-top: 20px !important;
+    }
+
+    .contact {
+        padding-bottom: 60px !important;
+    }
+
+    .contact-banner {
+        width: 100% !important;
+        padding: 80px 20px 100px !important;
+        margin-bottom: -60px !important;
+    }
+
+    .contact-banner h2 {
+        font-size: 32px !important;
+    }
+
+    .contact-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 20px !important;
+    }
+
+    .contact-card {
+        width: 100% !important;
+        padding: 40px 24px !important;
+    }
+}
+
+/* --- 7. EXTRA SMALL MOBILE (480px) --- */
+@media (max-width: 480px) {
+    .contact-footer {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+    }
+
+    .contact-card p {
+        word-break: break-all;
+    }
+
+    form.cta {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        gap: 12px !important;
+    }
+
+    form.cta input[type="email"] {
+        width: 100% !important;
+        height: 56px !important;
+        min-height: 56px !important;
+        padding: 0 24px !important;
+        border-radius: 30px !important;
+        border: 1px solid #e2e8f0 !important;
+        background-color: #ffffff !important;
+        font-size: 16px !important;
+        display: block !important;
+        box-sizing: border-box !important;
+        color: #0f172a !important;
+    }
+
+    form.cta .btn-grad {
+        width: 100% !important;
+        height: 56px !important;
+        border-radius: 30px !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+}
+
+/* --- 6. SMALL PHONES (425px and below) --- */
+@media (max-width: 425px) {
+    .hero-left {
+        padding: 100px 20px 40px !important; 
+        text-align: left !important;
+        display: flex !important;
+        flex-direction: column !important;
+        margin-top: 0 !important; 
+    }
+
+    h1 {
+        font-size: clamp(26px, 7vw, 32px) !important; 
+        line-height: 1.2 !important;
+        margin-bottom: 12px !important;
+        position: relative !important;
+        top: 0 !important;
+        transform: none !important;
+    }
+
+    .sub {
+        font-size: 15px !important;
+        margin-bottom: 20px !important;
+        line-height: 1.5 !important;
+    }
+
+    form.cta {
+        display: flex !important;
+        flex-direction: column !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 0 !important;
+        align-items: stretch !important;
+    }
+
+    form.cta input[type="email"] {
+        width: 100% !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        border-radius: 30px !important;
+        border: 1px solid #e2e8f0 !important;
+        padding: 0 24px !important;
+        background: #fff !important;
+        font-size: 16px !important;
+        box-sizing: border-box !important;
+        display: block !important;
+        color: #0f172a !important;
+    }
+
+    form.cta .btn.btn-grad {
+        width: 100% !important;
+        height: 54px !important;
+        border-radius: 30px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .steps-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .step-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .step-dots {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 15px 0 !important;
+    }
+
+    .step-dot {
+        margin: 0 4px !important;
+    }
+
+    .step-number {
+        margin: 0 auto 20px auto !important;
+    }
+}
+
+/* --- 8. SMALLEST DEVICES (380px) --- */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 26px !important;
+    }
+
+    .hero-content-wrapper p {
+        font-size: 14px !important;
+    }
+
+    .hero-badges {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .gallery__header h2 {
+        font-size: 24px !important;
+    }
+}
+
+/* --- 7. EXTRA SMALL PHONES (375px) --- */
+@media (max-width: 375px) {
+    h1 {
+        font-size: 28px !important;
+    }
+
+    .sub {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .badges li {
+        font-size: 12px !important;
+        gap: 8px !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero-left {
+        padding: 90px 15px 30px !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    h1 {
+        font-size: 24px !important;
+        line-height: 1.1 !important;
+        margin-top: 0 !important;
+        position: relative !important;
+        top: 0 !important;
+    }
+
+    .sub {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+    }
+
+    form.cta {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    form.cta input[type="email"] {
+        height: 54px !important;
+        min-height: 54px !important;
+        width: 100% !important;
+        border-radius: 30px !important;
+        box-sizing: border-box !important;
+        padding: 0 20px !important;
+        background: #fff !important;
+        font-size: 16px !important;
+        display: block !important;
+    }
+
+    form.cta .btn-grad {
+        height: 54px !important;
+        width: 100% !important;
+        border-radius: 30px !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .badges {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+
+    .step-dots {
+        gap: 8px !important;
+    }
+    
+    .step-number {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* GLOBAL HELPERS */
+.gallery {
+    overflow: hidden;
+}

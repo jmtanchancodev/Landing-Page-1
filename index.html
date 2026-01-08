@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helax — Chatbot Automation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+        <div class="search-backdrop" id="searchBackdrop"></div>
+        <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+            <button class="search-close cursor-target" id="searchClose" aria-label="Close search">×</button>
+            <div class="search-inner">
+                <input class="search-input" id="searchInput" type="text" placeholder="Search ..." autocomplete="off"
+                    spellcheck="false" />
+                <div class="search-underline" aria-hidden="true"></div>
+                <div class="search-meta" id="searchMeta" aria-live="polite"></div>
+                <div class="search-actions">
+                    <button class="search-nav cursor-target" id="searchPrev" type="button"
+                        aria-label="Previous match">↑</button>
+                    <button class="search-nav cursor-target" id="searchNext" type="button"
+                        aria-label="Next match">↓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-float">
+            <div class="nav-left">
+                <a class="brand" href="#" aria-label="Helax">
+                    <span class="brand-mark" aria-hidden="true">
+                        <span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span
+                            class="d d4"></span><span class="d d5"></span>
+                    </span>
+                    <span class="brand-name">Helax</span>
+                </a>
+            </div>
+
+            <nav class="nav-center" aria-label="Primary">
+                <a class="nav-link cursor-target" href="#home">Home</a>
+                <a class="nav-link cursor-target" href="#about">About Us</a>
+                <a class="nav-link cursor-target" href="#services">Services</a>
+                <a class="nav-link cursor-target" href="#gallery">Gallery</a>
+                <a class="nav-link cursor-target" href="#contact">Contact Us</a>
+                <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
+            </nav>
+
+            <div class="nav-right">
+                <button class="icon-btn cursor-target" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="M20 20l-3.5-3.5"></path>
+                    </svg>
+                </button>
+                <span class="nav-divider" aria-hidden="true"></span>
+                <button class="icon-btn cursor-target" aria-label="Account">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21a8 8 0 0 0-16 0"></path>
+                        <circle cx="12" cy="8" r="4"></circle>
+                    </svg>
+                </button>
+                <a class="btn btn-dark cursor-target" href="#">Learn More</a>
+                <button class="hamburger cursor-target" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                    <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <div class="mobile-search-container">
+                <input type="text" placeholder="Search Keywords" class="mobile-search-input">
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="#home" class="mobile-nav-link">HOME</a>
+                <a href="#about" class="mobile-nav-link">ABOUT US</a>
+                <a href="#services" class="mobile-nav-link">SERVICES</a>
+                <a href="#gallery" class="mobile-nav-link">GALLERY</a>
+                <a href="#contact" class="mobile-nav-link">GET IN TOUCH</a>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <h1>Enhance your Customer<br>Service Efficiency with<br><span class="underline">ChatBot</span>
+                        Automation</h1>
+                    <p class="sub">An all-in-one platform to build and launch conversational chatbots without coding.
+                    </p>
+                    <form class="cta" onsubmit="return false;">
+                        <input type="email" placeholder="techaiinfo@gmail.com" required />
+                        <button class="btn btn-grad cursor-target" type="submit">Get Started Free</button>
+                    </form>
+                    <ul class="badges">
+                        <li><span class="check">✓</span> Sign up for free</li>
+                        <li><span class="check">✓</span> Free 14-day trial</li>
+                        <li><span class="check">✓</span> No credit card required</li>
+                    </ul>
+                </div>
+                <div class="hero-right">
+                    <img class="hero-right-bg" src="assets/right-bg.webp" alt="" aria-hidden="true" />
+                    <img class="hero-phone" src="assets/phone.webp" alt="Chatbot preview on a phone" />
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <header class="about-head">
+                    <h2 class="about-title">Helax for <span class="accent-green">Tech</span> <span
+                            class="accent-blue">Startup</span> business</h2>
+                    <p class="about-sub">Get better results in a fraction of the time. Finally, a writing tool you’ll
+                        actually use.</p>
+                </header>
+                <div class="about-grid">
+                    <article class="about-card">
+                        <div class="about-icon"><i class="fa-solid fa-file-lines"></i></div>
+                        <div class="about-body">
+                            <h3>Blog Content</h3>
+                            <p>Convert your audience with copy that sells.</p>
+                            <a class="about-link" href="#">Try Blog Content ›</a>
+                        </div>
+                    </article>
+                    <article class="about-card">
+                        <div class="about-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <div class="about-body">
+                            <h3>Digital Ad Copy</h3>
+                            <p>Produce compelling ad copy in just a few clicks.</p>
+                            <a class="about-link" href="#">Try Ad Copy ›</a>
+                        </div>
+                    </article>
+                    <article class="about-card">
+                        <div class="about-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <div class="about-body">
+                            <h3>Ecommerce Copy</h3>
+                            <p>Increase sales with better product descriptions.</p>
+                            <a class="about-link" href="#">Try Ecommerce Copy ›</a>
+                        </div>
+                    </article>
+                    <article class="about-card">
+                        <div class="about-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="about-body">
+                            <h3>Sales Copy</h3>
+                            <p>Convert your audience with copy that sells.</p>
+                            <a class="about-link" href="#">Try Sales Copy ›</a>
+                        </div>
+                    </article>
+                    <article class="about-card">
+                        <div class="about-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                        <div class="about-body">
+                            <h3>Social Media Copy</h3>
+                            <p>Engage your audience with compelling social copy.</p>
+                            <a class="about-link" href="#">Try Social Media Copy ›</a>
+                        </div>
+                    </article>
+                    <article class="about-card">
+                        <div class="about-icon"><i class="fa-solid fa-globe"></i></div>
+                        <div class="about-body">
+                            <h3>Website Copy</h3>
+                            <p>Overhaul your website with more compelling copy.</p>
+                            <a class="about-link" href="#">Try Website Copy ›</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="about-divider"></div>
+
+                <div class="steps-grid">
+                    <article class="step">
+                        <div class="step-badge">01</div>
+                        <h3>Write better content faster</h3>
+                        <p>Leverage AI to write your content and copy in minutes.</p>
+                    </article>
+                    <div class="step-dots"><span class="dot"></span><span class="dot is-active"></span><span
+                            class="dot"></span></div>
+                    <article class="step">
+                        <div class="step-badge">02</div>
+                        <h3>Say ‘goodbye’ to the blank page</h3>
+                        <p>Leverage AI to generate ideas and draft content instantly.</p>
+                    </article>
+                    <div class="step-dots"><span class="dot"></span><span class="dot is-active"></span><span
+                            class="dot"></span></div>
+                    <article class="step">
+                        <div class="step-badge">03</div>
+                        <h3>90+ tools and templates</h3>
+                        <p>Access a massive library of tools for every content type.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="services-header">
+                        <h2 class="section-title">Keep conversations going across <span>channels</span></h2>
+                        <p class="section-sub">Write 10x faster, engage your audience, & never struggle with the blank
+                            page again.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><img src="assets/website.webp" alt="Website"></div>
+                        <h3>Website</h3>
+                        <p>Reach out to visitors proactively to boost website engagement.</p>
+                        <a href="#" class="more-details">More Details <span class="icon-arrow">→</span></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><img src="assets/livechat.webp" alt="Live Chat"></div>
+                        <h3>Live Chat</h3>
+                        <p>Support customers 24/7 to improve your customer satisfaction.</p>
+                        <a href="#" class="more-details">More Details <span class="icon-arrow">→</span></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><img src="assets/messenger.webp" alt="Messenger"></div>
+                        <h3>Messenger</h3>
+                        <p>Connect with Messenger users in real time to grow your audience.</p>
+                        <a href="#" class="more-details">More Details <span class="icon-arrow">→</span></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><img src="assets/slack.webp" alt="Slack"></div>
+                        <h3>Slack</h3>
+                        <p>Streamline your office workflow to improve team productivity.</p>
+                        <a href="#" class="more-details">More Details <span class="icon-arrow">→</span></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><img src="assets/dropbox.webp" alt="Dropbox"></div>
+                        <h3>Dropbox</h3>
+                        <p>Reach out to visitors proactively to boost website engagement.</p>
+                        <a href="#" class="more-details">More Details <span class="icon-arrow">→</span></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><img src="assets/mailchimp.webp" alt="Mailchimp"></div>
+                        <h3>Mailchimp</h3>
+                        <p>Reach out to visitors proactively to boost website engagement.</p>
+                        <a href="#" class="more-details">More Details <span class="icon-arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery">
+            <div class="container gallery-flex-parent">
+                <div class="gallery__header">
+                    <h2 class="sec-title__title">Explore our <span class="shape">gallery</span></h2>
+                    <div class="gallery__nav">
+                        <div class="gallery-button-prev cursor-target"><i class="fas fa-chevron-left"></i></div>
+                        <div class="gallery-button-next cursor-target"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery__slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide gallery__item">
+                        <h3 class="title">Assessment Template</h3>
+                        <div class="image"><img src="assets/example1.png" alt="Gallery 1"></div>
+                        <a href="#!">More Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="swiper-slide gallery__item">
+                        <h3 class="title">E-commerce Bot</h3>
+                        <div class="image"><img src="assets/example1.png" alt="Gallery 2"></div>
+                        <a href="#!">More Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="swiper-slide gallery__item">
+                        <h3 class="title">Booking System</h3>
+                        <div class="image"><img src="assets/example1.png" alt="Gallery 3"></div>
+                        <a href="#!">More Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="swiper-slide gallery__item">
+                        <h3 class="title">HR Onboarding</h3>
+                        <div class="image"><img src="assets/example1.png" alt="Gallery 4"></div>
+                        <a href="#!">More Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="swiper-slide gallery__item">
+                        <h3 class="title">Event Registration</h3>
+                        <div class="image"><img src="assets/example1.png" alt="Gallery 5"></div>
+                        <a href="#!">More Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-banner">
+                <h2>Get in touch</h2>
+            </div>
+
+            <div class="contact-grid">
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="contact-card">
+                    <div class="contact-icon"><img src="assets/IN.webp" alt="LinkedIn"></div>
+                    <h3>Visit Us</h3>
+                    <p>LinkedIn<br>Click Here</p>
+                </a>
+                <a href="mailto:jmtanchanco.dev@gmail.com" class="contact-card">
+                    <div class="contact-icon"><img src="assets/GM.webp" alt="Email"></div>
+                    <h3>Email Us</h3>
+                    <p>jmtanchanco.dev@gmail.com<br>Click Here</p>
+                </a>
+            </div>
+
+            <div class="contact-footer">
+                <p>&copy; 2026 Helax Automation. Built for Performance.</p>
+            </div>
+        </section>
+</body>
+
+</html>
