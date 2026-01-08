@@ -14,7 +14,7 @@
   const searchPrev = document.getElementById("searchPrev");
   const searchNext = document.getElementById("searchNext");
 
-  // --- CURSOR LOGIC ---
+  // Cursor Logic
   if (cursor) {
     let currentX = window.innerWidth / 2;
     let currentY = window.innerHeight / 2;
@@ -89,7 +89,7 @@
     }
   });
 
-  // --- UNIFIED HAMBURGER & MOBILE MENU LOGIC ---
+  // Unified Hamburger & Mobile Menu Logic
   if (hamburger && mobileMenu) {
     const toggleMenu = (forceState) => {
       const isOpen = forceState !== undefined ? forceState : !mobileMenu.classList.contains("is-open");
@@ -98,7 +98,6 @@
       mobileMenu.classList.toggle("is-open", isOpen);
       hamburger.setAttribute("aria-expanded", isOpen);
       
-      // Prevent body scroll when menu is open
       document.body.style.overflow = isOpen ? "hidden" : "";
 
       if (!isOpen && mobileSearchInput) {
@@ -117,9 +116,7 @@
       link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
         if (href && href.startsWith("#")) {
-          // If it's an internal link, close menu then scroll
           toggleMenu(false);
-          // Wait slightly for the menu slide-out before scrolling for better UX
           setTimeout(() => {
             scrollToHash(href);
           }, 400); 
@@ -133,7 +130,7 @@
     });
   }
 
-  // --- NAVIGATION & INDICATOR LOGIC ---
+  // Navigation & Indicator Logic
   const nav = document.querySelector(".nav-center");
   const navLinks = nav ? nav.querySelectorAll('.nav-link[href^="#"]') : [];
   const indicator = (nav && nav.querySelector("#navIndicator")) || (nav && nav.querySelector(".nav-indicator")) || null;
@@ -256,7 +253,7 @@
     });
   }
 
-  // --- SEARCH FUNCTIONALITY ---
+  // Search Functionality
   let hits = [];
   let activeIndex = -1;
 
@@ -283,7 +280,6 @@
     window.setTimeout(() => {
       searchOverlay.style.visibility = "hidden";
       searchOverlay.style.pointerEvents = "none";
-      // Only unlock scroll if mobile menu is NOT open
       if (!mobileMenu.classList.contains("is-open")) lockScroll(false);
       clearHighlights();
       if (searchInput) searchInput.value = "";

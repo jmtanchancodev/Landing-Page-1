@@ -1,8 +1,4 @@
-/* ==========================================================================
-   MEDIA QUERIES - RESPONSIVE ARCHITECTURE
-   ========================================================================== */
-
-/* --- 1. TABLETS & LAPTOPS (1200px) --- */
+/* Laptops (1200px) */
 @media (max-width: 1200px) {
     .container {
         width: min(1040px, calc(100% - 40px));
@@ -22,7 +18,7 @@
     }
 }
 
-/* --- 2. DESKTOP/TABLET TRANSITION (1024px) --- */
+/* Desktop/Tablet (1024px) */
 @media (max-width: 1024px) {
     .services {
         background:
@@ -61,7 +57,7 @@
     }
 }
 
-/* --- 3. MOBILE LANDSCAPE / SMALL TABLETS (980px) --- */
+/* Small Tablets (980px) */
 @media (max-width: 980px) {
     :root {
         --navH: 76px;
@@ -101,7 +97,7 @@
         display: none !important;
     }
 
-    /* --- HAMBURGER & MOBILE MENU --- */
+    /* Hamburger & Mobile Menu */
     #hamburger {
         display: flex !important;
         align-items: center;
@@ -185,19 +181,15 @@
         display: flex;
         flex-direction: column;
         gap: 0;
-        /* Reduced gap since we have padding */
         padding-top: 10px;
     }
 
     .mobile-nav-link {
         display: block;
-        /* Changed from flex to block to remove icon spacing logic */
         padding: 24px 0;
-        /* Increased vertical space for a premium feel */
         text-decoration: none;
         color: #0f172a;
         font-size: 17px;
-        /* Slightly refined size */
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -207,21 +199,17 @@
         text-align: left;
     }
 
-    /* Specific fix for the buttons mentioned */
     .mobile-nav-link svg,
     .mobile-nav-link img {
         display: none !important;
-        /* Force hide any icons/viewboxes */
     }
 
     .mobile-nav-link:active {
         color: #6366f1;
         padding-left: 10px;
-        /* Visual feedback that the item was pressed */
         background-color: rgba(99, 102, 241, 0.03);
     }
 
-    /* Hero Section Stacking */
     .hero-grid {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -274,7 +262,6 @@
         align-items: center !important;
     }
 
-    /* 2. Style the header and ensure it stays at the top */
     .gallery__header {
         display: flex !important;
         flex-direction: column !important;
@@ -286,13 +273,11 @@
         order: 1; /* First */
     }
 
-    /* 3. The Slider follows the title */
     .gallery__slider {
         order: 2; /* Second */
         width: 100% !important;
     }
 
-    /* 4. The Navigation moves to the bottom */
     .gallery__nav {
         display: flex !important;
         justify-content: center !important;
@@ -308,7 +293,7 @@
     }
 }
 
-/* --- 4. STANDARD PHONES (768px) --- */
+/* --- Standard Phones (768px) --- */
 @media (max-width: 768px) {
     .search-panel {
         width: 95%;
@@ -350,7 +335,7 @@
     }
 }
 
-/* --- 5. MOBILE PORTRAIT (640px) --- */
+/* --- Mobile Portrait (640px) --- */
 @media (max-width: 640px) {
     .services-grid {
         grid-template-columns: 1fr;
@@ -363,7 +348,7 @@
     }
 }
 
-/* --- 6. SMALL PHONES (560px) --- */
+/* --- Small Phones (560px) --- */
 @media (max-width: 560px) {
 
     #home.hero,
@@ -516,7 +501,7 @@
     }
 }
 
-/* --- 7. EXTRA SMALL MOBILE (480px) --- */
+/* --- Extra Small Mobile (480px) --- */
 @media (max-width: 480px) {
     .contact-footer {
         padding: 40px 20px;
@@ -568,7 +553,7 @@
     }
 }
 
-/* --- 6. SMALL PHONES (425px and below) --- */
+/* --- Small Phones (425px) --- */
 @media (max-width: 425px) {
     .hero-left {
         padding: 100px 20px 40px !important; 
@@ -661,7 +646,7 @@
     }
 }
 
-/* --- 8. SMALLEST DEVICES (380px) --- */
+/* --- Smallest Phones (380px) --- */
 @media (max-width: 380px) {
     h1 {
         font-size: 26px !important;
@@ -682,7 +667,7 @@
     }
 }
 
-/* --- 7. EXTRA SMALL PHONES (375px) --- */
+/* --- Extra Small Phones (375px) --- */
 @media (max-width: 375px) {
     h1 {
         font-size: 28px !important;
@@ -768,7 +753,7 @@
     }
 }
 
-/* GLOBAL HELPERS */
+/* Global Helpers */
 .gallery {
     overflow: hidden;
 }
