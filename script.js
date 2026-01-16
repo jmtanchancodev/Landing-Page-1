@@ -14,7 +14,6 @@
   const searchPrev = document.getElementById("searchPrev");
   const searchNext = document.getElementById("searchNext");
 
-  // Cursor Logic
   if (cursor) {
     let currentX = window.innerWidth / 2;
     let currentY = window.innerHeight / 2;
@@ -68,7 +67,6 @@
     });
   }
 
-  // --- GALLERY SLIDER ---
   const gallerySwiper = new Swiper('.gallery__slider', {
     slidesPerView: 1,
     spaceBetween: 30,
@@ -89,7 +87,6 @@
     }
   });
 
-  // Unified Hamburger & Mobile Menu Logic
   if (hamburger && mobileMenu) {
     const toggleMenu = (forceState) => {
       const isOpen = forceState !== undefined ? forceState : !mobileMenu.classList.contains("is-open");
@@ -111,7 +108,6 @@
       toggleMenu();
     });
 
-    // Handle clicks on mobile nav links
     mobileLinks.forEach(link => {
       link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
@@ -124,17 +120,17 @@
       });
     });
 
-    // Close menu if user clicks outside content area
     mobileMenu.addEventListener("click", (e) => {
       if (e.target === mobileMenu) toggleMenu(false);
     });
   }
 
-  // Navigation & Indicator Logic
   const nav = document.querySelector(".nav-center");
   const navLinks = nav ? nav.querySelectorAll('.nav-link[href^="#"]') : [];
   const indicator = (nav && nav.querySelector("#navIndicator")) || (nav && nav.querySelector(".nav-indicator")) || null;
   const STORAGE_KEY = "helax_active_section";
+  let isScrollingManual = false;
+  let scrollTimeout;
 
   const getHeaderOffset = () => {
     const floatBar = document.querySelector(".nav-float");
@@ -150,17 +146,24 @@
 
   const moveIndicator = (linkEl) => {
     if (!nav || !indicator || !linkEl) return;
-    const navRect = nav.getBoundingClientRect();
-    const linkRect = linkEl.getBoundingClientRect();
-    const x = (linkRect.left - navRect.left) + nav.scrollLeft;
-    const w = linkRect.width;
-    indicator.style.width = `${w}px`;
-    indicator.style.transform = `translateX(${x}px)`;
-    indicator.style.opacity = "1";
+    
+    requestAnimationFrame(() => {
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = linkEl.getBoundingClientRect();
+      const x = (linkRect.left - navRect.left) + nav.scrollLeft;
+      const w = linkRect.width;
+      
+      indicator.style.width = `${w}px`;
+      indicator.style.transform = `translateX(${x}px)`;
+      indicator.style.opacity = "1";
+    });
   };
 
   const setActiveLink = (linkEl, persist = true) => {
-    if (!linkEl) return;
+    if (!linkEl || linkEl.classList.contains("is-active")) {
+      if (linkEl) moveIndicator(linkEl);
+      return;
+    }
     navLinks.forEach((a) => a.classList.remove("is-active"));
     linkEl.classList.add("is-active");
     moveIndicator(linkEl);
@@ -175,6 +178,9 @@
     const target = id ? document.getElementById(id) : null;
     if (!target) return;
 
+    isScrollingManual = true;
+    clearTimeout(scrollTimeout);
+
     const headerHeight = getHeaderOffset();
     const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
@@ -182,6 +188,10 @@
       top: y,
       behavior: "smooth"
     });
+
+    scrollTimeout = setTimeout(() => {
+      isScrollingManual = false;
+    }, 1000);
   };
 
   const getCurrentSectionHash = () => {
@@ -208,23 +218,34 @@
         const href = a.getAttribute("href");
         if (!href || !href.startsWith("#")) return;
         e.preventDefault();
-        history.pushState(null, "", href);
+        
         setActiveLink(a, true);
         scrollToHash(href);
+        
+        if (history.pushState) {
+          history.pushState(null, "", href);
+        }
+
         if (searchOverlay?.classList.contains("is-open")) closeSearch();
       });
     });
 
     const applyFromScroll = () => {
+      if (isScrollingManual) return;
       const hash = getCurrentSectionHash();
       const link = getLinkByHash(hash);
       if (link) setActiveLink(link, true);
     };
 
     window.addEventListener("scroll", applyFromScroll, { passive: true });
+    
+    let resizeTimeout;
     window.addEventListener("resize", () => {
-      const active = nav.querySelector(".nav-link.is-active") || navLinks[0];
-      moveIndicator(active);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const active = nav.querySelector(".nav-link.is-active") || navLinks[0];
+        moveIndicator(active);
+      }, 100);
     });
 
     window.addEventListener("popstate", () => {
@@ -245,15 +266,11 @@
       const homeLink = getLinkByHash("#home") || navLinks[0];
       const pick = hashLink || byScroll || savedLink || homeLink;
       if (pick) {
-        requestAnimationFrame(() => {
-          setActiveLink(pick, true);
-          moveIndicator(pick);
-        });
+        setActiveLink(pick, true);
       }
     });
   }
 
-  // Search Functionality
   let hits = [];
   let activeIndex = -1;
 
