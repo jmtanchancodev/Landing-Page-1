@@ -12,7 +12,8 @@
 }
 
 html{
-  scroll-padding-top: var(--navOffset);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navH, 80px);
 }
 
 *{box-sizing:border-box}
@@ -1042,28 +1043,28 @@ h1{
 /*
   Gallery Section
 */
+/* --- Gallery Section --- */
 .gallery {
     background: #ffffff;
     padding-top: 100px;
-    padding-bottom: 120px;
+    padding-bottom: 120px !important;
     overflow: hidden;
 }
 
-/* Flex Parent */
+/* Flex Parent - updated to allow title and buttons to sit side-by-side on desktop */
 .gallery .container {
     display: flex;
     flex-direction: column;
 }
 
-/* Header layout for Desktop */
+/* Updated Header Layout: Now only contains the Title */
 .gallery__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     margin-bottom: 50px;
     width: 100%;
 }
-
+/* Desktop Logic: Wrap title and nav in a flex container if needed, 
+   but since they are separate in HTML, we handle nav independently */
 .gallery .sec-title__title {
     font-size: 48px;
     font-weight: 800;
@@ -1075,12 +1076,15 @@ h1{
     color: #3b82f6;
 }
 
+/* Navigation Buttons Container - Centered by default for all screens */
 .gallery__nav {
     display: flex;
     gap: 12px;
+    justify-content: center;
+    margin-top: 40px; /* Space below the slider */
 }
 
-/* Navigation Buttons */
+/* Navigation Buttons Styles */
 .gallery-button-next,
 .gallery-button-prev {
     width: 55px;
@@ -1099,30 +1103,23 @@ h1{
     outline: none;
 }
 
+/* Remove default Swiper icons if you are using FontAwesome in HTML */
 .gallery-button-next::after,
 .gallery-button-prev::after {
-    font-family: swiper-icons;
-    font-size: 20px;
-    color: #0f172a;
+    display: none; 
 }
-
-.gallery-button-prev::after { content: 'prev'; }
-.gallery-button-next::after { content: 'next'; }
 
 .gallery-button-next:hover,
 .gallery-button-prev:hover {
     background: #0f172a;
+    color: #ffffff; /* Sets FontAwesome icon color to white */
     transform: translateY(-3px);
 }
 
-.gallery-button-next:hover::after,
-.gallery-button-prev:hover::after {
-    color: #ffffff;
-}
-
+/* Slider and Item Styles */
 .gallery__slider {
     width: 100%;
-    padding: 20px 0 50px;
+    padding: 20px 0 20px;
     overflow: visible;
 }
 
