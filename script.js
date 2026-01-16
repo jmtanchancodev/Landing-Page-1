@@ -90,11 +90,11 @@
   if (hamburger && mobileMenu) {
     const toggleMenu = (forceState) => {
       const isOpen = forceState !== undefined ? forceState : !mobileMenu.classList.contains("is-open");
-      
+
       hamburger.classList.toggle("is-open", isOpen);
       mobileMenu.classList.toggle("is-open", isOpen);
       hamburger.setAttribute("aria-expanded", isOpen);
-      
+
       document.body.style.overflow = isOpen ? "hidden" : "";
 
       if (!isOpen && mobileSearchInput) {
@@ -115,7 +115,7 @@
           toggleMenu(false);
           setTimeout(() => {
             scrollToHash(href);
-          }, 400); 
+          }, 400);
         }
       });
     });
@@ -146,13 +146,13 @@
 
   const moveIndicator = (linkEl) => {
     if (!nav || !indicator || !linkEl) return;
-    
+
     requestAnimationFrame(() => {
       const navRect = nav.getBoundingClientRect();
       const linkRect = linkEl.getBoundingClientRect();
       const x = (linkRect.left - navRect.left) + nav.scrollLeft;
       const w = linkRect.width;
-      
+
       indicator.style.width = `${w}px`;
       indicator.style.transform = `translateX(${x}px)`;
       indicator.style.opacity = "1";
@@ -182,7 +182,8 @@
     clearTimeout(scrollTimeout);
 
     const headerHeight = getHeaderOffset();
-    const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    // Use target.offsetTop for a more reliable anchor point than getBoundingClientRect
+    const y = target.offsetTop - headerHeight;
 
     window.scrollTo({
       top: y,
@@ -218,10 +219,10 @@
         const href = a.getAttribute("href");
         if (!href || !href.startsWith("#")) return;
         e.preventDefault();
-        
+
         setActiveLink(a, true);
         scrollToHash(href);
-        
+
         if (history.pushState) {
           history.pushState(null, "", href);
         }
@@ -238,7 +239,7 @@
     };
 
     window.addEventListener("scroll", applyFromScroll, { passive: true });
-    
+
     let resizeTimeout;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimeout);
@@ -357,7 +358,7 @@
       if (after) frag.appendChild(document.createTextNode(after));
       node.parentNode.replaceChild(frag, node);
     });
-    
+
     if (searchMeta) searchMeta.textContent = hits.length ? `${hits.length} result(s)` : "No results";
     if (hits.length) {
       activeIndex = 0;
@@ -391,7 +392,7 @@
   if (searchBtn) searchBtn.addEventListener("click", openSearch);
   if (searchClose) searchClose.addEventListener("click", closeSearch);
   if (searchBackdrop) searchBackdrop.addEventListener("click", closeSearch);
-  
+
   if (searchInput) {
     searchInput.addEventListener("input", (e) => highlightAll(e.target.value.trim()));
     searchInput.addEventListener("keydown", (e) => {
@@ -412,7 +413,7 @@
 
   if (searchNext) searchNext.addEventListener("click", nextHit);
   if (searchPrev) searchPrev.addEventListener("click", prevHit);
-  
+
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && searchOverlay?.classList.contains("is-open")) closeSearch();
   });
